@@ -1,0 +1,10 @@
+**/.terraform/*
+.terraform
+*.tfstate
+*.tfstate.*
+.idea
+.env
+terraform.tfvars
+certs
+tests/vendor
+terraform.tfvars
