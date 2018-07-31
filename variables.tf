@@ -1,4 +1,7 @@
-variable "do_token" {}
+variable "do_token" {
+  description = "Your Digital Ocean API token"
+  type = "string"
+}
 
 variable "image" {
   description = "The digital ocean image to use, this module right now only works with centos, specifically centos-7-x64, you can use doctl compute image list-distribution to find out more"

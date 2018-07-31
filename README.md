@@ -3,7 +3,7 @@
 
 | Name | Description | Type | Default | Required |
 |------|-------------|:----:|:-----:|:-----:|
-| do_token |  | string | - | yes |
+| do_token | Your Digital Ocean API token | string | - | yes |
 | domain | Your drone server domain in the form domain.something | text | - | yes |
 | image | The digital ocean image to use, this module right now only works with centos, specifically centos-7-x64, you can use doctl compute image list-distribution to find out more | string | `centos-7-x64` | no |
 | name | The name fo the dropplet that will be ceated, this can be any droplet valid name that you want | string | `drone` | no |
