@@ -3,19 +3,18 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_droplet" "drone_droplet" {
-  image    = "${var.image}"
-  name     = "${var.name}"
-  region   = "${var.region}"
-  size     = "${var.size}"
-
+  image  = "${var.image}"
+  name   = "${var.name}"
+  region = "${var.region}"
+  size   = "${var.size}"
 
   provisioner "file" {
-    source = "certs/server.crt"
+    source      = "certs/server.crt"
     destination = "/opt/server.crt"
   }
 
   provisioner "file" {
-    source = "certs/server.key"
+    source      = "certs/server.key"
     destination = "/opt/server.key"
   }
 

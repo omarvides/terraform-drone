@@ -1,13 +1,23 @@
+# Terraform drone (Unstable)
 
-## Inputs
+This terraform repository can create Drone.io CI/CD Tool at many cloud providers, it currently can create Drone servers at
 
-| Name | Description | Type | Default | Required |
-|------|-------------|:----:|:-----:|:-----:|
-| do_token | Your Digital Ocean API token | string | - | yes |
-| domain | Your drone server domain in the form domain.something | text | - | yes |
-| image | The digital ocean image to use, this module right now only works with centos, specifically centos-7-x64, you can use doctl compute image list-distribution to find out more | string | `centos-7-x64` | no |
-| name | The name fo the dropplet that will be ceated, this can be any droplet valid name that you want | string | `drone` | no |
-| region | The region where you want to create your drone instance, by default nyc1 | string | `nyc1` | no |
-| size | The size of the droplet you want to create, by default is set to s-1vcpu-1gb ($5/month) you can use doctl compute size list to find more | string | `s-1vcpu-1gb` | no |
-| ssh_fingerprints |  | list | - | yes |
+* DigitalOcean
 
+
+## Digital Ocean
+
+At DigitalOcean it uses the following default configurations
+
+
+| Property | Value |
+|----|-----:|
+| Image | centos-7-x64 |
+| Droplet name | drone |
+| Region | nyc1 |
+| Droplet size | s-1vcpu-1gb |
+
+
+## Usage 
+
+Here [USAGE.md](./USAGE.md) you can find out what variables this module requires when imported as a source inside other terraform module
