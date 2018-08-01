@@ -3,10 +3,11 @@ provider "digitalocean" {
 }
 
 resource "digitalocean_droplet" "drone_droplet" {
-  image  = "${var.image}"
-  name   = "${var.name}"
-  region = "${var.region}"
-  size   = "${var.size}"
+  image    = "${var.image}"
+  name     = "${var.name}"
+  region   = "${var.region}"
+  size     = "${var.size}"
+  ssh_keys = "${var.ssh_fingerprints}"
 
   provisioner "file" {
     source      = "certs/server.crt"

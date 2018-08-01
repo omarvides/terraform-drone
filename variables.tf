@@ -29,5 +29,5 @@ variable "ssh_fingerprints" {
 
 variable "domain" {
   description = "Your drone server domain in the form domain.something"
-  type        = "text"
+  type        = "string"
 }
