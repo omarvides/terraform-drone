@@ -9,8 +9,8 @@ services:
       - 9000
     volumes:
       - /var/lib/drone:/var/lib/drone/
-      - ${DRONE_CRT}:${DRONE_CRT}
-      - ${DRONE_KEY}:${DRONE_KEY}
+      - /opt/server.crt:/opt/server.crt
+      - /opt/server.key:/opt/server.key
     restart: always
     environment:
       - DRONE_OPEN=${DRONE_OPEN}
@@ -20,8 +20,8 @@ services:
       - DRONE_GITHUB_CLIENT=${DRONE_GITHUB_CLIENT}
       - DRONE_GITHUB_SECRET=${DRONE_GITHUB_SECRET}
       - DRONE_SECRET=${DRONE_SECRET}
-      - DRONE_SERVER_CERT=${DRONE_CRT}
-      - DRONE_SERVER_KEY=${DRONE_KEY}
+      - DRONE_SERVER_CERT=/opt/server.crt
+      - DRONE_SERVER_KEY=/opt/server.key
 
   drone-agent:
     image: drone/agent:0.8
