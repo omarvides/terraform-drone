@@ -23,24 +23,36 @@ resource "digitalocean_droplet" "drone_droplet" {
   size     = "${var.size}"
   ssh_keys = "${var.ssh_fingerprints}"
 
-  provisioner "file" {
-    source      = "certs/server.crt"
-    destination = "/opt/server.crt"
+  provisioner "remot-exec" {
+    connection {
+      type = "ssh"
+      user = "root"
+    }
+
+    scripts = [
+      "mkdir -p ${var.server_crt_and_key_destination}",
+      "mkdir -p ${var.docker_compose_file_content}",
+    ]
   }
 
   provisioner "file" {
-    source      = "certs/server.key"
-    destination = "/opt/server.key"
+    content     = "${var.server_crt_file_content}"
+    destination = "${var.server_crt_and_key_destination}"
   }
 
   provisioner "file" {
-    source      = "./files/.env"
-    destination = "/opt/.env"
+    content     = "${var.server_key_file_content}"
+    destination = "${var.server_crt_and_key_destination}"
   }
 
   provisioner "file" {
-    source      = "./files/docker-compose.yaml"
-    destination = "/opt/docker-compose.yaml"
+    content     = "${var.env_file_content}"
+    destination = "${var.docker_compose_file_destination}/.env"
+  }
+
+  provisioner "file" {
+    content     = "${var.docker_compose_file_content}"
+    destination = "${var.docker_compose_file_destination}/docker-compose.yaml"
   }
 
   provisioner "remote-exec" {
@@ -61,7 +73,7 @@ resource "digitalocean_domain" "current" {
 }
 
 resource "digitalocean_record" "drone" {
-  name   = "drone"
+  name   = "${var.subdomain}"
   domain = "${digitalocean_domain.current.name}"
   type   = "A"
   value  = "${digitalocean_domain.current.ip_address}"
