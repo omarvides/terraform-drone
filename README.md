@@ -20,4 +20,4 @@ At DigitalOcean it uses the following default configurations
 
 ## Usage 
 
-Here [USAGE.md](./USAGE.md) you can find out what variables this module requires when imported as a source inside other terraform module
+Here [USAGE.md](./digital_ocean/README.md) you can find out what variables this module requires when imported as a source inside other terraform module
