@@ -3,12 +3,30 @@
 * This module can be used to create to create drone.io instances on digital ocean droplets, it currently creates only single droplet instances
 * ## Usage example
 * ``` terraform
-*  module "my-drone-server" {
-*   source = "git@github.com:omarvides/terraform-drone.git?ref=1.0.0//digital_ocean"
-*   ssh_fingerprints=["00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"]
-*   do_token = "my-do-token"
-*   domain = "mysuperdomainsomethingunique.com"
-*}
+* data "template_file" "env_file_content" {
+*   template = "${file("files/docker-compose.yaml.tpl")}"
+* 
+*   vars = {
+*     crt_file_location = "${var.crt_file_location}"
+*     key_file_location = "${var.key_file_location}"
+*   }
+* }
+* 
+* 
+* module "clouderx" {
+*   source                          = "../drone-do/digital_ocean"
+*   domain                          = "clouderx.com"
+*   server_crt_file_content         = "${file(${var.crt_file_location}})}"
+*   server_key_file_content         = "${file(${var.key_file_location})}"
+*   do_token                        = "${var.do_token}"
+*   ssh_fingerprints                = "${var.ssh_fingerprint}"
+*   docker_compose_file_destination = "${var.docker_compose_file_destination}"
+*   env_file_content                = "${data.template_file.env_file_content}"
+*   docker_compose_file_content     = "${file("files/.env")}"
+*   subdomain                       = "drone"
+*   server_crt_and_key_destination  = "${var.keys_destination}"
+* }
+
 * ```
 */
 
