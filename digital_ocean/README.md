@@ -5,13 +5,12 @@ This module can be used to create to create drone.io instances on digital ocean 
 data "template_file" "env_file_content" {
   template = "${file("files/docker-compose.yaml.tpl")}"
 
-  vars = {}
+  vars = {
+    crt_file_location = "${var.crt_file_location}"
+    key_file_location = "${var.key_file_location}"
+  }
 }
 
-data "template_file" "docker_compose_file_content" {
-  template = "${file("files/.env")}"
-  vars     = {}
-}
 
 module "clouderx" {
   source                          = "git@github.com:omarvides/terraform-drone.git?ref=1.0.0//digital_ocean"
@@ -22,10 +21,11 @@ module "clouderx" {
   ssh_fingerprints                = "${var.ssh_fingerprint}"
   docker_compose_file_destination = "${var.docker_compose_file_destination}"
   env_file_content                = "${data.template_file.env_file_content}"
-  docker_compose_file_content     = "${data.template_file.docker_compose_file_content}"
+  docker_compose_file_content     = "${file("files/.env")}"
   subdomain                       = "drone"
   server_crt_and_key_destination  = "${var.keys_destination}"
 }
+
 ```
 
 
