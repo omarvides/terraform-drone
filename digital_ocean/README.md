@@ -1,3 +1,15 @@
+# Drone CI/CD terraform for Digital Ocean instances
+This module can be used to create to create drone.io instances on digital ocean droplets, it currently creates only single droplet instances
+## Usage example
+``` terraform
+ module "my-drone-server" {
+  source = "git@github.com:omarvides/terraform-drone.git?ref=1.0.0//digital_ocean"
+  ssh_fingerprints=["00:00:00:00:00:00:00:00:00:00:00:00:00:00:00:00"]
+  do_token = "my-do-token"
+  domain = "mysuperdomainsomethingunique.com"
+}
+```
+
 
 ## Inputs
 
