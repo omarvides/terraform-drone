@@ -49,7 +49,7 @@ resource "digitalocean_droplet" "drone_droplet" {
 
     inline = [
       "mkdir -p ${var.server_crt_and_key_destination}",
-      "mkdir -p ${var.docker_compose_file_content}",
+      "mkdir -p ${var.docker_compose_file_destination}",
     ]
   }
 
