@@ -55,12 +55,12 @@ resource "digitalocean_droplet" "drone_droplet" {
 
   provisioner "file" {
     content     = "${var.server_crt_file_content}"
-    destination = "${var.server_crt_and_key_destination}"
+    destination = "${var.server_crt_and_key_destination}/server.crt"
   }
 
   provisioner "file" {
     content     = "${var.server_key_file_content}"
-    destination = "${var.server_crt_and_key_destination}"
+    destination = "${var.server_crt_and_key_destination}/server.key"
   }
 
   provisioner "file" {
