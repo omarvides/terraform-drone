@@ -41,7 +41,7 @@ resource "digitalocean_droplet" "drone_droplet" {
   size     = "${var.size}"
   ssh_keys = "${var.ssh_fingerprints}"
 
-  provisioner "remot-exec" {
+  provisioner "remote-exec" {
     connection {
       type = "ssh"
       user = "root"
