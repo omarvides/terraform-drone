@@ -78,9 +78,8 @@ resource "digitalocean_droplet" "drone_droplet" {
       type = "ssh"
       user = "root"
     }
-
     scripts = [
-      "./scripts/initscript.sh",
+      "${path.module}/scripts/initscript.sh",
     ]
   }
 }
