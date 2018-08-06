@@ -10,7 +10,6 @@ variable "image" {
 
 variable "name" {
   description = "The name fo the dropplet that will be ceated, this can be any droplet valid name that you want"
-  default     = "drone"
 }
 
 variable "region" {
