@@ -1,4 +1,4 @@
-# Terraform drone (Unstable)
+# Terraform drone
 
 This terraform repository can create Drone.io CI/CD Tool at many cloud providers, it currently can create Drone servers at
 
