@@ -1,6 +1,5 @@
 #! /bin/bash
 set -x
-cat /opt/.env >> /etc/environment
 sudo yum check-update
 curl -fsSL https://get.docker.com/ | sh
 sudo systemctl start docker

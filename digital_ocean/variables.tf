@@ -31,10 +31,6 @@ variable "domain" {
   type        = "string"
 }
 
-variable "server_crt_and_key_destination" {
-  description = ""
-  type        = "string"
-}
 
 variable "server_crt_file_content" {
   description = ""
@@ -47,11 +43,6 @@ variable "server_key_file_content" {
 }
 
 variable "env_file_content" {
-  description = ""
-  type        = "string"
-}
-
-variable "docker_compose_file_destination" {
   description = ""
   type        = "string"
 }
