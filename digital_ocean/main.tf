@@ -41,24 +41,36 @@ resource "digitalocean_droplet" "drone_droplet" {
   size     = "${var.size}"
   ssh_keys = "${var.ssh_fingerprints}"
 
+  provisioner "remote-exec" {
+    connection {
+      type = "ssh"
+      user = "root"
+    }
+
+    inline = [
+      "mkdir -p ${var.server_crt_and_key_destination}",
+      "mkdir -p ${var.docker_compose_file_destination}",
+    ]
+  }
+
   provisioner "file" {
     content     = "${var.server_crt_file_content}"
-    destination = "/etc/ssl/certs/server.crt"
+    destination = "${var.server_crt_and_key_destination}/server.crt"
   }
 
   provisioner "file" {
     content     = "${var.server_key_file_content}"
-    destination = "/etc/ssl/private/server.key"
+    destination = "${var.server_crt_and_key_destination}/server.key"
   }
 
   provisioner "file" {
     content     = "${var.env_file_content}"
-    destination = "/opt/.env"
+    destination = "${var.docker_compose_file_destination}/.env"
   }
 
   provisioner "file" {
     content     = "${var.docker_compose_file_content}"
-    destination = "/opt/docker-compose.yaml"
+    destination = "${var.docker_compose_file_destination}/docker-compose.yaml"
   }
 
   provisioner "remote-exec" {
@@ -66,6 +78,7 @@ resource "digitalocean_droplet" "drone_droplet" {
       type = "ssh"
       user = "root"
     }
+
     scripts = [
       "${path.module}/scripts/initscript.sh",
     ]
