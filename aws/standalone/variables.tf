@@ -1,31 +1,19 @@
 variable "ami_id" {
-  default = ""
+  description = "The id of the AMI to create the instance"
 }
 
-variable "instance_type" {
-  default = ""
-}
+variable "instance_type" {}
 
-variable "server_crt_and_key_destination" {
-  default = ""
-}
+variable "server_crt_file_content" {}
 
-variable "docker_compose_file_destination" {
-  default = ""
-}
+variable "server_key_file_content" {}
 
-variable "server_crt_file_content" {
-  default = ""
-}
+variable "env_file_content" {}
 
-variable "server_key_file_content" {
-  default = ""
-}
+variable "docker_compose_file_content" {}
 
-variable "env_file_content" {
-  default = ""
-}
+variable "drone_domain" {}
 
-variable "docker_compose_file_content" {
-  default = ""
-}
+variable "route53_zone" {}
+
+variable "subdomain" {}
